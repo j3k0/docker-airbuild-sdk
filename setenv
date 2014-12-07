@@ -1,0 +1,5 @@
+# Choose airbuild image version
+DOCKER_IMAGE="jeko/airbuild:15.0"
+
+# Remove SUDO if not necessary
+DOCKER_RUN="docker run -v `pwd`:/src -it --rm $DOCKER_IMAGE"
