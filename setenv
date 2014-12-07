@@ -1,5 +1,17 @@
-# Choose airbuild image version
-DOCKER_IMAGE="jeko/airbuild:15.0"
+#!/bin/bash
 
-# Remove SUDO if not necessary
-DOCKER_RUN="docker run -v `pwd`:/src -it --rm $DOCKER_IMAGE"
+if docker images jeko/airbuild | grep "jeko/airbuild" > /dev/null; then
+    # Choose airbuild image version
+    DOCKER_IMAGE="jeko/airbuild:15.0"
+
+    # Remove SUDO if not necessary
+    DOCKER_RUN="docker run -v `pwd`:/src -it --rm $DOCKER_IMAGE"
+else
+    echo
+    echo "ERROR: jeko/airbuild docker image not found."
+    echo
+    echo "To download it, run:"
+    echo "    docker pull jeko/airbuild"
+    echo
+    exit 1
+fi
